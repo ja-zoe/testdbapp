@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 
 const LogIn = () => {
     return (
-        <div className='container'>
-            <h1> Log In </h1>
-            <form>
-                <label>
-                    <span> Username/Email </span>
+        <div className={styles.container}>
+            <h1 className={styles.text}> Log In </h1>
+            <form className={styles.form}>
+                <label className={styles.label}>
+                    <span className={styles.span}> Username/Email </span>
                     <input type='text'></input>
                 </label>
-                <label>
-                    <span> Password </span>
+                <label className={styles.label}>
+                    <span className={styles.span}> Password </span>
                     <input type='password'></input>
                 </label>
             </form>

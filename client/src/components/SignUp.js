@@ -4,23 +4,23 @@ import { Link } from 'react-router-dom';
 
 const SignUp = () => {
     return (
-        <div className='container'>
-            <h1> Sign Up </h1>
-            <form>
-                <label>
-                    <span> Username </span>
+        <div className={styles.container}>
+            <h1 className={styles.text}> Sign Up </h1>
+            <form className={styles.form}>
+                <label className={styles.label}>
+                    <span className={styles.span}> Username </span>
                     <input type='text'></input>
                 </label>
-                <label>
-                    <span> Email </span>
+                <label className={styles.label}>
+                    <span className={styles.span}> Email </span>
                     <input type='email'></input>
                 </label>
-                <label>
-                    <span> Password </span>
+                <label className={styles.label}>
+                    <span className={styles.span}> Password </span>
                     <input type='password'></input>
                 </label>
             </form>
-            <Link to='/login'> Alredy Have an Account? </Link>
+            <Link to='/login' className={styles.link}> Alredy Have an Account? </Link>
             <Link to='/'> Home </Link>
         </div>
     )
