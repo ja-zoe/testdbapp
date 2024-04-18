@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from '../styles/LogIn.module.css'
+import styles from '../styles/LogIn.module.css';
+import { Link } from 'react-router-dom';
 
 const LogIn = () => {
     return (
@@ -15,6 +16,8 @@ const LogIn = () => {
                     <input type='password'></input>
                 </label>
             </form>
+            <Link to='/sign-up'> Need an Account? </Link>
+            <Link to='/'> Home </Link>
         </div>
     )
 }

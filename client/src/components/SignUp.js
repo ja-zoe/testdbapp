@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/SignUp.module.css'
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
     return (
@@ -19,6 +20,8 @@ const SignUp = () => {
                     <input type='password'></input>
                 </label>
             </form>
+            <Link to='/login'> Alredy Have an Account? </Link>
+            <Link to='/'> Home </Link>
         </div>
     )
 }
