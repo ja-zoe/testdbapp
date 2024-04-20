@@ -15,6 +15,7 @@ const LogIn = () => {
                     <span className={styles.span}> Password </span>
                     <input type='password'></input>
                 </label>
+                <button> Log In </button>
             </form>
             <Link to='/sign-up'> Need an Account? </Link>
             <Link to='/'> Home </Link>

@@ -38,10 +38,14 @@ app.post('/login', (req,res) => {
 
     con.query('SELECT * FROM users WHERE username = ? AND password = ?', [username,password],
         (err, result) => {
-            if(result){
-                res.send(result);
+            if(err){
+                req.setEncoding({err:err});
             }else{
-                res.send({message: 'ENTER CORRECT ASKED DETAILS!'})
+                if(result.length > 0){
+                    res.send(result);
+                }else{
+                    res.send({message: 'WRONG USERNAME OR PASSWORD'})
+                }
             }
         }
     )
