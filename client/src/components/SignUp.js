@@ -1,6 +1,7 @@
 import { React, useState } from 'react';
 import styles from '../styles/SignUp.module.css'
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 const SignUp = () => {
     const [email,setEmail] = useState('');
@@ -9,7 +10,11 @@ const SignUp = () => {
     const [registerStatus,setRegisterStatus] = useState('');
 
     const register = () => {
-
+        Axios.post('http://localhost:3003/register', {
+           email: email,
+           username: username,
+           password: password
+        })
     }
 
     return (
