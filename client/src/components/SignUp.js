@@ -7,6 +7,7 @@ const SignUp = () => {
     const [email,setEmail] = useState('');
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
+    const [registerStatus,setRegisterStatus] = useState('');
 
     const register = () => {
         axios.post('http://localhost:3003/register', {
@@ -14,12 +15,8 @@ const SignUp = () => {
            username: username,
            password: password,
         }).then((response) => {
-            console.log(response)
+            setRegisterStatus('User Registered')
         })
-    }
-
-    const registe = () => {
-        console.log('yep')
     }
 
     return (
@@ -42,6 +39,7 @@ const SignUp = () => {
             </form>
             <Link to='/login' className={styles.link}> Alredy Have an Account? </Link>
             <Link to='/'> Home </Link>
+            <h1 className={styles.registerStatus}>{registerStatus}</h1>
         </div>
     )
 }
