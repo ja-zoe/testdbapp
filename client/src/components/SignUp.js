@@ -1,16 +1,15 @@
 import { React, useState } from 'react';
 import styles from '../styles/SignUp.module.css'
 import { Link } from 'react-router-dom';
-import Axios from 'axios';
+import axios from 'axios';
 
 const SignUp = () => {
     const [email,setEmail] = useState('');
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
-    const [registerStatus,setRegisterStatus] = useState('');
 
     const register = () => {
-        Axios.post('http://localhost:3003/register', {
+        axios.post('http://localhost:3003/register', {
            email: email,
            username: username,
            password: password

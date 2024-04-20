@@ -1,12 +1,11 @@
 import { React, useState } from 'react';
 import styles from '../styles/LogIn.module.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const LogIn = () => {
-    const [email,setEmail] = useState('');
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
-    const [loginStatus,setloginStatus] = useState('');
     
     const logIn = () => {
 
