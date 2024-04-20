@@ -1,59 +1,38 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const cors = require('cors');
 
 const app = express();
 
 app.use(express.json())
-app.use(cors)
+app.use(cors())
 
 const con = mysql.createConnection(
     {
         user: 'root',
         host: 'localhost',
-        password: '',
+        password: 'password',
         database: 'testdbapp',
     }
 )
 
 app.post('/register', (req,res) => {
-    const email = req.body.email;
-    const username = req.body.username;
-    const password = req.body.password;
+    const username = req.body.username
+    const password = req.body.password
+    const email = req.body.email
 
-    con.query('INSERT INTO users (email, username, password) VALUES(?,?,?)', [email,username,password],
-        (err, result) => {
-            if(result){
-                res.send(result);
-            }else{
-                res.send({message: 'ENTER CORRECT ASKED DETAILS!'})
-            }
-        }
-    )
-})
-
-app.post('/login', (req,res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    con.query('SELECT * FROM users WHERE username = ? AND password = ?', [username,password],
-        (err, result) => {
+    con.query(
+        'INSERT INTO users (email, username, password) VALUES (?, ?, ?)',
+        [email,username,password], 
+        (err,result) => {
             if(err){
-                req.setEncoding({err:err});
-            }else{
-                if(result.length > 0){
-                    res.send(result);
-                }else{
-                    res.send({message: 'WRONG USERNAME OR PASSWORD'})
-                }
+                console.log(err);
+                return res.status(500).send('Error Registering User')
             }
+            res.send('User Registration Successful')
+            console.log('User Registration Successful')
         }
     )
-})
-
-app.post('/', (req,res) => {
-    console.log('fuh')
-    res.send('yeo')
 })
 
 app.listen(3003, () => {
