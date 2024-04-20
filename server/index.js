@@ -16,6 +16,14 @@ const con = mysql.createConnection(
     }
 )
 
+con.connect((err)=>{
+    if(err){
+        console.log(err)
+    }else{
+        console.log('MYSql db Connected!')
+    }
+})
+
 app.post('/register', (req,res) => {
     const username = req.body.username
     const password = req.body.password
@@ -35,6 +43,7 @@ app.post('/register', (req,res) => {
     )
 })
 
+
 app.post('/login', (req,res) => {
     const username = req.body.username
     const password = req.body.password
@@ -47,10 +56,12 @@ app.post('/login', (req,res) => {
                 res.send({err: err})
             }
 
-            if(result) {
+            if(result.length > 0) {
                 res.send(result)
+                console.log('User log in succesful!')
             }else{
                 res.send({message: 'Wrong username/password combination!'})
+                console.log('bruva')
             }
             
         }

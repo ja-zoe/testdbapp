@@ -12,8 +12,14 @@ const SignUp = () => {
         axios.post('http://localhost:3003/register', {
            email: email,
            username: username,
-           password: password
+           password: password,
+        }).then((response) => {
+            console.log(response)
         })
+    }
+
+    const registe = () => {
+        console.log('yep')
     }
 
     return (

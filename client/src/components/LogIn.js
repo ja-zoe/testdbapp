@@ -6,9 +6,22 @@ import axios from 'axios';
 const LogIn = () => {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
+
+    const [loginStatus,setLoginStatus] = useState('')
     
     const logIn = () => {
+        axios.post('http://localhost:3003/login',{
+            username: username,
+            password: password
+        }).then((response) => {
 
+            if(response.data.message){
+                setLoginStatus(response.data.message)
+            } else {
+                setLoginStatus(response.data[0].username)
+            }
+            
+        })
     }
 
     return (
@@ -27,6 +40,8 @@ const LogIn = () => {
             </form>
             <Link to='/sign-up'> Need an Account? </Link>
             <Link to='/'> Home </Link>
+
+            <h1 className={styles.loginStatus}>{loginStatus}</h1>
         </div>
     )
 }
