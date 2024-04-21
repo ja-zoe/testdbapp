@@ -11,13 +11,17 @@ const SignUp = () => {
 
     const register = (event) => {
         event.preventDefault();
-        if(email.length>1&&password.length>1&&username.length>1){
+        if(email.length>0&&password.length>0&&username.length>0){
             axios.post('http://localhost:3003/register', {
             email: email,
             username: username,
             password: password,
             }).then((response) => {
-                setRegisterStatus(response.data.message)
+                if (response.data.message == "User Registration Successful"){
+                    window.location.href = '/login'
+                }else{
+                    setRegisterStatus(response.data.message)
+                }
             })
         }else{
             setRegisterStatus('Please input a username, email, and password!')
