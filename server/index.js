@@ -40,8 +40,7 @@ app.post('/register', (req,res) => {
                 console.log(err);
                 return res.send('Error Registering User')
             }
-            res.send('User Registration Successful')
-            console.log('User Registration Successful')
+            res.send({message: 'User Registration Successful'})
         }
     )
 })
