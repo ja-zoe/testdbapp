@@ -17,7 +17,7 @@ const SignUp = () => {
             username: username,
             password: password,
             }).then((response) => {
-                setRegisterStatus(response.data)
+                setRegisterStatus(response.data.message)
             })
         }else{
             setRegisterStatus('Please input a username, email, and password!')

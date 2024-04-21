@@ -11,19 +11,24 @@ const LogIn = () => {
     
     const logIn = (event) => {
         event.preventDefault();
-        
-        axios.post('http://localhost:3003/login',{
-            username: username,
-            password: password
-        }).then((response) => {
 
-            if(response.data.message){
-                setLoginStatus(response.data.message)
-            } else {
-                setLoginStatus(response.data[0].username)
-            }
+        if(username.length>1&&password.length>1){
+            axios.post('http://localhost:3003/login',{
+                username: username,
+                password: password
+            }).then((response) => {
+
+                if(response.data.message){
+                    setLoginStatus(response.data.message)
+                } else {
+                    setLoginStatus(response.data[0].username)
+                }
+                
+            })
             
-        })
+        }else {
+            setLoginStatus('Please input a username and password!')
+        }
     }
 
     return (
