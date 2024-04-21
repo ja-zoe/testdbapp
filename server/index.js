@@ -34,8 +34,11 @@ app.post('/register', (req,res) => {
         [email,username,password], 
         (err,result) => {
             if(err){
+                if(err.code=='ER_DUP_ENTRY'){
+                    return res.send({message:'Already a user with that username or email', err: err.code})
+                }
                 console.log(err);
-                return res.status(500).send('Error Registering User')
+                return res.send('Error Registering User')
             }
             res.send('User Registration Successful')
             console.log('User Registration Successful')
@@ -53,7 +56,7 @@ app.post('/login', (req,res) => {
         [username,password],
         (err,result) => {
             if(err){
-                res.send({err: err})
+                res.send({err: err.code})
             }
 
             if(result.length > 0) {
@@ -61,13 +64,15 @@ app.post('/login', (req,res) => {
                 console.log('User log in succesful!')
             }else{
                 res.send({message: 'Wrong username/password combination!'})
-                console.log('bruva')
             }
             
         }
     )
 })
 
-app.listen(3003, () => {
+app.listen(3003, (err) => {
+    if(err){
+        console.log(err)
+    }
     console.log('running backend server');
 })
