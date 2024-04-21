@@ -9,14 +9,19 @@ const SignUp = () => {
     const [password,setPassword] = useState('');
     const [registerStatus,setRegisterStatus] = useState('');
 
-    const register = () => {
-        axios.post('http://localhost:3003/register', {
-           email: email,
-           username: username,
-           password: password,
-        }).then((response) => {
-            setRegisterStatus('User Registered')
-        })
+    const register = (event) => {
+        event.preventDefault();
+        if(email.length>1&&password.length>1&&username.length>1){
+            axios.post('http://localhost:3003/register', {
+            email: email,
+            username: username,
+            password: password,
+            }).then((response) => {
+                setRegisterStatus(response.data)
+            })
+        }else{
+            setRegisterStatus('Please input a username, email, and password!')
+        }
     }
 
     return (
@@ -25,7 +30,7 @@ const SignUp = () => {
             <form className={styles.form}>
                 <label className={styles.label}>
                     <span className={styles.span}> Username </span>
-                    <input type='text'onChange={(e) => {setUsername(e.target.value)}}/>
+                    <input type='text' onChange={(e) => {setUsername(e.target.value)}}/>
                 </label>
                 <label className={styles.label}>
                     <span className={styles.span}> Email </span>

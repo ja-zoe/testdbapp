@@ -9,7 +9,9 @@ const LogIn = () => {
 
     const [loginStatus,setLoginStatus] = useState('')
     
-    const logIn = () => {
+    const logIn = (event) => {
+        event.preventDefault();
+        
         axios.post('http://localhost:3003/login',{
             username: username,
             password: password
