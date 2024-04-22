@@ -27,7 +27,7 @@ const LogIn = () => {
             })
             
         }else {
-            setLoginStatus('Please input a username and password!')
+            setLoginStatus('Please input a username and password!!')
         }
     }
 
